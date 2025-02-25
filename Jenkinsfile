@@ -5,6 +5,9 @@ pipeline{
         DBT_PROJECT_DIR = "JENKINS_CI_CD",
         BQ_PROJECT = "learn-436612"
     }
+    triggers {
+        cron('H/30 4 * * *') // schedule to run daily at 9:30 AM IST
+    }
     stages{
         stage('Checkout') {
             steps {
@@ -24,16 +27,20 @@ pipeline{
 
                 
                 dir("${env.DBT_PROJECT_DIR}"){
-                    SH 'dbt run'
+                    sh 'dbt run'
                 }}
 
             }
         }
         stage('Test dbt'){
             steps{
+                withCredentials([file(CredentialsId: 'gcp-service-account')]){
+
+                
                 dir("${env.DBT_PROJECT_DIR}"){
                     sh 'dbt test'
-                }
+                }}
+
             }
         }
         stage('Run Bigquery SQL Scripts') {
