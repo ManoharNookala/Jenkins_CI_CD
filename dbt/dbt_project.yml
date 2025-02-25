@@ -1,8 +1,0 @@
-name: 'JENKINS_CI_CD'
-version: '1.0.0'
-config-version:2
-
-profile: 'JENKINS_CI_CD'
-model-paths: ["models"]
-
-

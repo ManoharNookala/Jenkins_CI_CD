@@ -1,0 +1,19 @@
+name: 'JENKINS_CI_CD'  # Project name
+version: '1.0.0'       # Version of your project
+config-version: 2      # Config version for dbt_project.yml
+
+profile: 'JENKINS_CI_CD'  # This should match the profile name in your profiles.yml
+
+# Specify where DBT models are located
+model-paths: ["models"]
+
+# Optional: set the target directory for compiled models and logs
+target-path: "target"          # Location where DBT writes compiled models (e.g., tables, views)
+clean-targets:
+  - "target"                  # Clean the target directory after runs
+  - "dbt_modules"             # Clean dbt_modules directory
+
+# Optional: Set the materialization behavior for models
+models:
+  JENKINS_CI_CD:               # The name of your project
+    +materialized: table       # Default materialization for all models in this project

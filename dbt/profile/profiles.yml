@@ -8,6 +8,6 @@ JENKINS_CI_CD:
       datasets:
           sales_dataset:  # Dataset for sales-related data
             dataset_name: "{{ env_var('DBT_DATASET1') }}" 
-          marketing_dataset:  # Dataset for marketing-related data
-            dataset_name: "{{ env_var('DBT_DATASET2') }}"
+          # marketing_dataset:  # Dataset for marketing-related data
+          #   dataset_name: "{{ env_var('DBT_DATASET2') }}"
 
