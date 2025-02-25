@@ -1,0 +1,2 @@
+for debug --> dbt debug --profiles-dir C:/Users/DELL/.dbt
+to run dbt --> dbt run --profiles-dir F:\GCP_Projects\Jenkins_CI_CD\dbt\profile\profiles.yml
