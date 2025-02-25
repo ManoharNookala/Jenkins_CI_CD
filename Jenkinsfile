@@ -23,7 +23,7 @@ pipeline{
 
         stage('Run dbt'){
             steps{
-                withCredentials([file(CredentialsId: 'gcp-service-account')]){
+                withCredentials([file(CredentialsId: 'gcp-service-account', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]){
 
                 
                 dir("${env.DBT_PROJECT_DIR}"){
@@ -34,7 +34,7 @@ pipeline{
         }
         stage('Test dbt'){
             steps{
-                withCredentials([file(CredentialsId: 'gcp-service-account')]){
+                withCredentials([file(CredentialsId: 'gcp-service-account', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]){
 
                 
                 dir("${env.DBT_PROJECT_DIR}"){
@@ -45,7 +45,7 @@ pipeline{
         }
         stage('Run Bigquery SQL Scripts') {
             steps {
-                withCredentials([file(CredentialsId: 'learn-436612', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                withCredentials([file(CredentialsId: 'gcp-service-account', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                     script {
                         def sqlFiles = findFiles(glob: '*.sql')
                         for (file in sqlFiles) {
