@@ -1,18 +1,8 @@
-name: 'dbt'
-version: '1.0'
-config-version: 2
+name: 'JENKINS_CI_CD'
+version: '1.0.0'
+config-version:2
 
-profile: 'dbt'
+profile: 'JENKINS_CI_CD'
+model-paths: ["models"]
 
-source-paths: ["models"]
-target-path: "target"
-clean-targets:
-  - "target"
-  - "dbt_modules"
 
-models:
-  my_dbt_project:
-    staging:
-      materialized: table
-    marts:
-      materialized: table

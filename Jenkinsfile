@@ -2,7 +2,7 @@ pipeline{
     agent any
 
     environment {
-        DBT_PROJECT_DIR = ".",
+        DBT_PROJECT_DIR = "JENKINS_CI_CD",
         BQ_PROJECT = "learn-436612"
     }
     stages{
@@ -20,9 +20,13 @@ pipeline{
 
         stage('Run dbt'){
             steps{
+                withCredentials([file(CredentialsId: 'gcp-service-account')]){
+
+                
                 dir("${env.DBT_PROJECT_DIR}"){
                     SH 'dbt run'
-                }
+                }}
+
             }
         }
         stage('Test dbt'){

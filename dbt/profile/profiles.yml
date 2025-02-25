@@ -1,0 +1,13 @@
+JENKINS_CI_CD:
+  target: dev  # This specifies the default target environment
+  outputs:
+    dev:
+      type: bigquery
+      project: "{{ env_var('BQ_PROJECT_ID') }}"  # Reference environment variable for GCP project ID
+      keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS') }}"  # Reference environment variable for the service account key file
+      datasets:
+          sales_dataset:  # Dataset for sales-related data
+            dataset_name: "{{ env_var('DBT_DATASET1') }}" 
+          marketing_dataset:  # Dataset for marketing-related data
+            dataset_name: "{{ env_var('DBT_DATASET2') }}"
+
